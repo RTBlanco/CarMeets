@@ -8,3 +8,16 @@
 meet = Meet.create(owner: "Ronny", location: "long island", title: 'the meet to beat all meets', image: "image-url", time: "12:30", date: "tuesday")
 meet.comments.build(owner: "Mike", content: "this is a thing")
 meet.save
+
+meet2 = Meet.create(owner: "batman", location: "Gotham", title: 'the bat meets', image: "image-url", time: "12:30", date: "tuesday")
+meet2.comments.build(owner: "robin", content: "holy crazy cars batman")
+meet2.save
+
+meet3 = Meet.create(owner: "Superman", location: "alaska", title: 'krypto meets', image: "image-url", time: "12:30", date: "tuesday")
+meet3.comments.build(owner: "superboy", content: "its cold here ")
+meet3.save
+
+
+meet4 = Meet.create(owner: "Flash", location: "Star City", title: 'only super cars ', image: "image-url", time: "12:30", date: "tuesday")
+meet4.comments.build(owner: "Kid-flash", content: "Im faster then these cars")
+meet4.save
