@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+meet = Meet.create(owner: "Ronny", location: "long island", title: 'the meet to beat all meets', image: "image-url", time: "12:30", date: "tuesday")
+meet.comments.build(owner: "Mike", content: "this is a thing")
+meet.save
