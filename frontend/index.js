@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
   meetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     console.log(formData(e))
+    // create new meet
+    createMeet(formData(e));
   })
 
   fetchMeets();
@@ -42,7 +44,31 @@ function fetchMeets(){
 }
 
 // create 
-function createMeet(){
+function createMeet(obj){
+  const body = {
+    location: obj.location,
+    title: obj.title,
+    image: obj.image,
+    owner: obj.owner,
+    secret_code: obj.secretCode,
+    date_time: obj.dateTime
+  }
+  console.log(body)
+
+  fetch(`${BASE_URL}/meets`,{
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      "Accept" : "application/json",
+    },
+    body: JSON.stringify(body)
+  })
+  .then(meet => meet.json())
+  .then(meet => {
+    let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
+    m.render();
+  })
+  .catch(error=> console.log(error))
 
 }
 

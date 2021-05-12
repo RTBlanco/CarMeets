@@ -46,6 +46,6 @@ class MeetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meet_params
-      params.require(:meet).permit(:time, :date, :location, :title, :image, :owner)
+      params.require(:meet).permit(:date_time, :location, :title, :image, :owner, :secret_code)
     end
 end
