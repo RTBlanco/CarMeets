@@ -1,5 +1,5 @@
 class Meet {
-  constructor(id, location, title, image, owner, secretCode, dateTime, comments){
+  constructor(id, location, title, image, owner, secretCode, dateTime){
     this.id = id;
     this.location = location;
     this.title = title;
@@ -7,7 +7,7 @@ class Meet {
     this.owner = owner;
     this.secretCode = secretCode; 
     this.dateTime = dateTime;
-    this.comments = comments;
+    this.comments = [];
   }
 
   // instance method 
