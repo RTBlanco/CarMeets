@@ -3,7 +3,7 @@ class MeetsController < ApplicationController
 
   # GET /meets
   def index
-    @meets = Meet.all
+    @meets = Meet.all.reverse_order
 
     render json: @meets, include: [:comments]
   end
