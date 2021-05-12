@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_12_170114) do
+ActiveRecord::Schema.define(version: 2021_05_12_171013) do
 
   create_table "comments", force: :cascade do |t|
     t.string "owner"
@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 2021_05_12_170114) do
   end
 
   create_table "meets", force: :cascade do |t|
-    t.string "time"
-    t.string "date"
     t.string "location"
     t.string "title"
     t.string "image"
@@ -31,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_05_12_170114) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "secret_code"
+    t.string "date_time"
   end
 
   add_foreign_key "comments", "meets"
