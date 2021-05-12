@@ -5,12 +5,12 @@ class MeetsController < ApplicationController
   def index
     @meets = Meet.all
 
-    render json: @meets
+    render json: @meets, include: [:comments]
   end
 
   # GET /meets/1
   def show
-    render json: @meet
+    render json: @meet, include: [:comments]
   end
 
   # POST /meets
