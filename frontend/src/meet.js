@@ -25,6 +25,7 @@ class Meet {
       <li>image: ${this.image}</li>
       <li>Owner: ${this.Owner}</li>
       <button>edit</button>
+      <button>comment</button>
     </ul>
     `
     meetsDiv.appendChild(meet)
