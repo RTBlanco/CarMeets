@@ -45,8 +45,9 @@ class Meet {
       <li>Owner: ${this.Owner}</li>
     </ul>
     <form class='comment-section'>
-      <input type='text' placeholder='name'>
-      <input type="textarea" placeholder="comment">
+      <input type='text' name="owner" placeholder="name">
+      <input type="textarea" name="content" placeholder="comment">
+      <input style="display: none;" type="submit" value="submit">
     </from>
     `
   }
