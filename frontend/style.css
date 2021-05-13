@@ -1,3 +1,7 @@
 .meet {
   border: 2px solid red;
 }
+
+.show {
+  display: none;
+}

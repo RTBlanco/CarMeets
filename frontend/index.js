@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     if(e.target.innerText === "edit" && e.target.tagName === "BUTTON"){
       console.log('edit =>',e.target.parentNode.id);
       // this is for the edit button
+    } else if (e.target.innerText === "show comments" && e.target.tagName === "BUTTON"){
+      testShowComments(e)
     }
   })
 
@@ -45,6 +47,16 @@ function getIdNum(e){
 
 function saveOwnerName(){
   // this will save the owner name in the cache 
+}
+
+function testShowComments(e){
+  console.log('running')
+  const comments = document.getElementById(`${e.target.parentNode.id}-comment`)
+  if (comments.classList.contains('show')){
+    comments.classList.remove('show')
+  } else {
+    comments.classList.add('show')
+  }
 }
 // Read 
 
