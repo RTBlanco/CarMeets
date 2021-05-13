@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
   meetsDiv.addEventListener('submit', (e)=>{
     e.preventDefault();
     console.log('comment =>',e.target.parentNode.id);
-
+    const comment = { ...formData(e), meetId: getIdNum(e)}
+    console.log(comment);
+    createComment(comment);
   })
   
   meetForm.addEventListener('submit', (e)=>{
@@ -35,6 +37,14 @@ function formData(e){
       }
     }
   return formData
+}
+
+function getIdNum(e){
+  return e.target.parentNode.id.slice(4)
+}
+
+function saveOwnerName(){
+  // this will save the owner name in the cache 
 }
 // Read 
 
@@ -86,8 +96,28 @@ function createMeet(obj){
 
 }
 
-function createComment(){
+function createComment(obj){
+  const body = {
+    meet_id: obj.meetId,
+    owner: obj.owner,
+    content: obj.content
+  }
+  console.log(body)
 
+  fetch(`${BASE_URL}/meets/${obj.meetId}/comments`,{
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      "Accept" : "application/json",
+    },
+    body: JSON.stringify(body)
+  })
+  .then(comment => comment.json())
+  .then(comment => {
+    let c = new Comment(comment.id, comment.owner, comment.content, comment.meet_id)
+    console.log(c);
+  })
+  .catch(error=> console.log(error))
 }
 
 // update 
