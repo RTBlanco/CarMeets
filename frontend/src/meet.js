@@ -17,16 +17,17 @@ class Meet {
     const meet = document.createElement('div');
 
     meet.id = `meet${this.id}`;
+    meet.classList.add("meet")
     meet.innerHTML = 
     `<h1>${this.title}</h1>
+    <button>edit</button>
     <ul>
       <li>location: ${this.location}</li>
       <li>Time and date: ${this.dateTime}</li>
       <li>image: ${this.image}</li>
       <li>Owner: ${this.Owner}</li>
-      <button>edit</button>
-      <button>comment</button>
     </ul>
+    <input type="textarea" placeholder="comment">
     `
     meetsDiv.appendChild(meet)
 
