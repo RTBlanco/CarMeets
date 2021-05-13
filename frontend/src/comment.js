@@ -1,8 +1,8 @@
 class Comment {
-  constructor(id, owner, content, meedId){
+  constructor(id, owner, content, meetId){
     this.id = id;
     this.owner = owner;
     this.content = content;
-    this.meedId = meedId;
+    this.meedId = meetId;
   }
 }
