@@ -44,7 +44,8 @@ class Meet {
       <li>image: ${this.image}</li>
       <li>Owner: ${this.Owner}</li>
     </ul>
-    <form>
+    <form class='comment-section'>
+      <input type='text' placeholder='name'>
       <input type="textarea" placeholder="comment">
     </from>
     `
