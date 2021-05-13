@@ -1,6 +1,20 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   const meetForm = document.getElementById('new-meet-form');
+  const meetsDiv = document.getElementById('all-meets');
 
+  meetsDiv.addEventListener('click', (e)=> {
+    if(e.target.innerText === "edit" && e.target.tagName === "BUTTON"){
+      console.log('edit =>',e.target.parentNode.id);
+      // this is for the edit button
+    }
+  })
+
+  meetsDiv.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    console.log('comment =>',e.target.parentNode.id);
+
+  })
+  
   meetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     console.log(formData(e))

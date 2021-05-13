@@ -13,13 +13,30 @@ class Meet {
   // instance method 
   render(){
     // render the meet instance on the page 
-    const meetsDiv = document.getElementById("meets");
+    const meetsDiv = document.getElementById("all-meets");
     const meet = document.createElement('div');
 
     meet.id = `meet${this.id}`;
     meet.classList.add("meet")
-    meet.innerHTML = 
-    `<h1>${this.title}</h1>
+    meet.innerHTML = this._meetInfo();
+    // `<h1>${this.title}</h1>
+    // <button>edit</button>
+    // <ul>
+    //   <li>location: ${this.location}</li>
+    //   <li>Time and date: ${this.dateTime}</li>
+    //   <li>image: ${this.image}</li>
+    //   <li>Owner: ${this.Owner}</li>
+    // </ul>
+    // <form>
+    //   <input type="textarea" placeholder="comment">
+    // </from>
+    // `
+    meetsDiv.appendChild(meet)
+
+  }
+
+  _meetInfo(){
+    return `<h1>${this.title}</h1>
     <button>edit</button>
     <ul>
       <li>location: ${this.location}</li>
@@ -27,10 +44,10 @@ class Meet {
       <li>image: ${this.image}</li>
       <li>Owner: ${this.Owner}</li>
     </ul>
-    <input type="textarea" placeholder="comment">
+    <form>
+      <input type="textarea" placeholder="comment">
+    </from>
     `
-    meetsDiv.appendChild(meet)
-
   }
 
   get date(){
