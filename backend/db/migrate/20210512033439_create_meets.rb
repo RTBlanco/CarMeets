@@ -5,7 +5,6 @@ class CreateMeets < ActiveRecord::Migration[6.1]
       t.string :date
       t.string :location
       t.string :title
-      t.string :image
       t.string :owner
 
       t.timestamps

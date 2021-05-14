@@ -27,16 +27,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     console.log(e)
     console.log('comment =>',e.target.parentNode.id);
-    const comment = { ...formData(e), meetId: getIdNum(e)}
+    const comment = { ...formInfo(e), meetId: getIdNum(e)}
     console.log(comment);
     createComment(comment);
   })
   
   meetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    console.log(formData(e))
-    // create new meet
-    createMeet(formData(e));
+    const meetData = new FormData(e.target)
+    console.log(meetData)
+    // console.log(formInfo(e))
+    // // create new meet
+    createMeet(meetData);
   })
 
   fetchMeets();
@@ -59,14 +61,14 @@ function showScrCode(e){
   }
 }
 
-function formData(e){
-  const formData = {};
+function formInfo(e){
+  const formInfo = {};
     for(const i of e.target){
       if (i.name != ''){
-        formData[i.name] = i.value
+        formInfo[i.name] = i.value
       }
     }
-  return formData
+  return formInfo
 }
 
 function getIdNum(e){
@@ -107,30 +109,57 @@ function fetchMeets(){
 }
 
 // create 
+// function createMeet(obj){
+//   const body = {
+//     location: obj.location,
+//     title: obj.title,
+//     image: obj.image,
+//     owner: obj.owner,
+//     secret_code: obj.secretCode,
+//     date_time: obj.dateTime
+//   }
+//   console.log(body)
+
+//   fetch(`${BASE_URL}/meets`,{
+//     method: "POST",
+//     headers: {
+//       'Content-Type': 'application/json',
+//       "Accept" : "application/json",
+//     },
+//     body: JSON.stringify(body)
+//   })
+//   .then(meet => meet.json())
+//   .then(meet => {
+//     let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
+//     m.render();
+//   })
+//   .catch(error=> console.log(error))
+
+// }
 function createMeet(obj){
-  const body = {
-    location: obj.location,
-    title: obj.title,
-    image: obj.image,
-    owner: obj.owner,
-    secret_code: obj.secretCode,
-    date_time: obj.dateTime
-  }
-  console.log(body)
+  // const body = {
+  //   location: obj.location,
+  //   title: obj.title,
+  //   image: obj.image,
+  //   owner: obj.owner,
+  //   secret_code: obj.secretCode,
+  //   date_time: obj.dateTime
+  // }
+  // console.log(body)
 
   fetch(`${BASE_URL}/meets`,{
     method: "POST",
     headers: {
-      'Content-Type': 'application/json',
       "Accept" : "application/json",
     },
-    body: JSON.stringify(body)
+    body: obj
   })
   .then(meet => meet.json())
-  .then(meet => {
-    let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
-    m.render();
-  })
+  .then(meet => console.log(meet))
+  // .then(meet => {
+  //   let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
+  //   m.render();
+  // })
   .catch(error=> console.log(error))
 
 }
