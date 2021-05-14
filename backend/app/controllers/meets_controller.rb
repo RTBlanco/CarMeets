@@ -3,8 +3,15 @@ class MeetsController < ApplicationController
 
   # GET /meets
   def index
-    @meets = Meet.all
-    render json: {id: @meet.id, owner: @meet.owner, location: @meet.location, title: @meet.title, secret_code: @meet.secret_code, image: @meet.get_image_url,comments: @meet.comments}
+    # @meets = Meet.all
+    @meets = Meet.all.map{|meet| meet.serialize}
+    # ser_meet = @meets.map{|meet| MeetSerializer.new(@meets).to_serialized_json}
+    # ser_meet = @meets.map{|meet| {id: meet.id, owner: meet.owner, location: meet.location, title: meet.title, secret_code: meet.secret_code, date_time: meet.date_time, comments:meet.comments, image: meet.get_image_url}}
+    # binding.pry
+
+    render json: @meets
+    # render json: MeetSerializer.new(@meets).to_serialized_json
+    # render json: @meets, include: [:comments]
   end
 
   # GET /meets/1
@@ -18,7 +25,8 @@ class MeetsController < ApplicationController
 
     if @meet.save
       # render json: @meet, status: :created, location: @meet
-      render json: {id: @meet.id, owner: @meet.owner, location: @meet.location, title: @meet.title, secret_code: @meet.secret_code, image: @meet.get_image_url }
+      # render json: {id: @meet.id, owner: @meet.owner, location: @meet.location, title: @meet.title, secret_code: @meet.secret_code, image: @meet.get_image_url }
+      render json: @meet.serialize
     else
       render json: @meet.errors, status: :unprocessable_entity
     end

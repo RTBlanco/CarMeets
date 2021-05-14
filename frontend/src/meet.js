@@ -48,6 +48,7 @@ class Meet {
     return `<h1>${this.title}</h1>
     <button>delete</button>
     <input class="hide" type="text" placeholder="secret code">
+    <img src="${this.image}" alt="CarMeet" width="500" height="600">
     <ul>
       <li>location: ${this.location}</li>
       <li>Time and date: ${this.dateTime}</li>

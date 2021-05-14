@@ -155,11 +155,11 @@ function createMeet(obj){
     body: obj
   })
   .then(meet => meet.json())
-  .then(meet => console.log(meet))
-  // .then(meet => {
-  //   let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
-  //   m.render();
-  // })
+  // .then(meet => console.log(meet))
+  .then(meet => {
+    let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
+    m.render();
+  })
   .catch(error=> console.log(error))
 
 }
