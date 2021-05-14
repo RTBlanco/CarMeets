@@ -38,6 +38,12 @@ class Meet {
 
   }
 
+  remove(){
+    const meetDiv = document.getElementById(`meet${this.id}`)
+    meetDiv.remove();
+    Meet.delMeet(this)
+  }
+
   _meetInfo(){
     return `<h1>${this.title}</h1>
     <button>delete</button>
@@ -72,5 +78,10 @@ class Meet {
 
   static findByID(id){
     return Meet.all.find(m => m.id == id)
+  }
+
+  static delMeet(meet){
+    let index = Meet.all.indexOf(meet)
+    Meet.all.splice(index, 1)
   }
 }

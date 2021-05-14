@@ -9,11 +9,14 @@ document.addEventListener('DOMContentLoaded', ()=> {
       if (hideActive(e)){
         const delInp = document.getElementById(e.target.parentNode.id).children[2]
         let meet = Meet.findByID(getIdNum(e))
-        delInp.addEventListener('keypress',(del)=>{
-          // console.log(del)
+        delInp.addEventListener('keypress', (del)=>{
           if (del.key === "Enter"){
-            console.log('delete')
-            console.log(delInp.value)
+            console.log(meet.secretCode)
+            if (delInp.value === meet.secretCode){
+              console.log(delInp.value)
+              meet.remove()
+              deleteMeet(meet)
+            }
           }
         })
       }
@@ -95,7 +98,7 @@ function fetchMeets(){
   .then(meets => {
     for( const meet of meets){
       // console.log('rails', meet );
-      let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_cdode, meet.date_time)
+      let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
       for(const comment of meet.comments){
         let c = new Comment(comment.id, comment.owner, comment.content, comment.meet_id)
         m.comments.push(c)
@@ -171,8 +174,16 @@ function updateComment(){
 }
 
 // delete
-function deleteMeet(){
-
+function deleteMeet(obj){
+  fetch(`${BASE_URL}/meets/${obj.id}`,{
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      "Accept" : "application/json",
+    }
+  })
+  .then(meet => console.log(meet))
+  .catch(error=> console.log(error))
 }
 
 function deleteComment(){
