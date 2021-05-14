@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const delInp = document.getElementById(e.target.parentNode.id).children[2]
         let meet = Meet.findByID(getIdNum(e))
         delInp.addEventListener('keypress', (del)=>{
+          console.log('enter')
           if (del.key === "Enter"){
             if (delInp.value === meet.secretCode){
               meet.remove()
@@ -36,8 +37,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
     e.preventDefault();
     const meetData = new FormData(e.target)
     console.log(meetData)
-    // console.log(formInfo(e))
-    // // create new meet
     createMeet(meetData);
   })
 
@@ -89,64 +88,22 @@ function testShowComments(e){
 }
 // Read 
 
-function fetchMeets(){
-  // this gets the meets 
+function fetchMeets(){ 
   fetch(`${BASE_URL}/meets`)
   .then(resp => resp.json())
   .then(meets => {
     for( const meet of meets){
-      // console.log('rails', meet );
       let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
       for(const comment of meet.comments){
         let c = new Comment(comment.id, comment.owner, comment.content, comment.meet_id)
         m.comments.push(c)
-        // console.log(c)
       }
-      // console.log(m)
       m.render();
     }
   })
 }
 
-// create 
-// function createMeet(obj){
-//   const body = {
-//     location: obj.location,
-//     title: obj.title,
-//     image: obj.image,
-//     owner: obj.owner,
-//     secret_code: obj.secretCode,
-//     date_time: obj.dateTime
-//   }
-//   console.log(body)
-
-//   fetch(`${BASE_URL}/meets`,{
-//     method: "POST",
-//     headers: {
-//       'Content-Type': 'application/json',
-//       "Accept" : "application/json",
-//     },
-//     body: JSON.stringify(body)
-//   })
-//   .then(meet => meet.json())
-//   .then(meet => {
-//     let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
-//     m.render();
-//   })
-//   .catch(error=> console.log(error))
-
-// }
 function createMeet(obj){
-  // const body = {
-  //   location: obj.location,
-  //   title: obj.title,
-  //   image: obj.image,
-  //   owner: obj.owner,
-  //   secret_code: obj.secretCode,
-  //   date_time: obj.dateTime
-  // }
-  // console.log(body)
-
   fetch(`${BASE_URL}/meets`,{
     method: "POST",
     headers: {
@@ -155,7 +112,6 @@ function createMeet(obj){
     body: obj
   })
   .then(meet => meet.json())
-  // .then(meet => console.log(meet))
   .then(meet => {
     let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
     m.render();
