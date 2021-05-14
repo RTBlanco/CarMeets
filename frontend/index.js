@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
         const delInp = document.getElementById(e.target.parentNode.id).children[2]
         let meet = Meet.findByID(getIdNum(e))
         delInp.addEventListener('keypress', (del)=>{
-          console.log('enter')
           if (del.key === "Enter"){
             if (delInp.value === meet.secretCode){
               meet.remove()
@@ -36,7 +35,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
   meetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
     const meetData = new FormData(e.target)
-    console.log(meetData)
     createMeet(meetData);
   })
 
@@ -111,12 +109,18 @@ function createMeet(obj){
     },
     body: obj
   })
-  .then(meet => meet.json())
+  .then(meet => {
+    if(meet.ok){
+      return meet.json()
+    } else {
+      throw new Error("invalid information")
+    }
+  })
   .then(meet => {
     let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
     m.render();
   })
-  .catch(error=> console.log(error))
+  .catch(error=> console.error(error))
 
 }
 
@@ -136,7 +140,13 @@ function createComment(obj){
     },
     body: JSON.stringify(body)
   })
-  .then(comment => comment.json())
+  .then(comment => {
+    if(comment.ok){
+      return comment.json()
+    } else {
+      throw new Error("invalid information")
+    }
+  })
   .then(comment => {
     let c = new Comment(comment.id, comment.owner, comment.content, comment.meet_id)
     const meet = document.getElementById(`meet${c.meetId}-comment`)
