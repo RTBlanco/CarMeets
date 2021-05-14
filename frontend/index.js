@@ -5,11 +5,16 @@ document.addEventListener('DOMContentLoaded', ()=> {
   meetsDiv.addEventListener('click', (e)=> {
     if(e.target.innerText === "delete" && e.target.tagName === "BUTTON"){
       console.log('edit =>',e.target.parentNode.id);
-      if (showScrCode(e)){
-        const delForm = document.getElementById(e.target.parentNode.id).children[2]
-        delForm.addEventListener('submit',(del)=>{
-          del.preventDefault();
-          
+      showScrCode(e)
+      if (hideActive(e)){
+        const delInp = document.getElementById(e.target.parentNode.id).children[2]
+        let meet = Meet.findByID(getIdNum(e))
+        delInp.addEventListener('keypress',(del)=>{
+          // console.log(del)
+          if (del.key === "Enter"){
+            console.log('delete')
+            console.log(delInp.value)
+          }
         })
       }
     } else if (e.target.innerText === "show comments" && e.target.tagName === "BUTTON"){
@@ -19,6 +24,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   meetsDiv.addEventListener('submit', (e)=>{
     e.preventDefault();
+
+    console.log(e)
     console.log('comment =>',e.target.parentNode.id);
     const comment = { ...formData(e), meetId: getIdNum(e)}
     console.log(comment);
@@ -37,15 +44,18 @@ document.addEventListener('DOMContentLoaded', ()=> {
 });
 const BASE_URL = 'http://localhost:3000'
 
+function hideActive(e){
+  const input = document.getElementById(e.target.parentNode.id).children[2];
+  return !input.classList.contains('hide')
+}
+
 function showScrCode(e){
   const button = document.getElementById(e.target.parentNode.id).children[1]
   const input = document.getElementById(e.target.parentNode.id).children[2];
   if (input.classList.contains('hide')){
     input.classList.remove('hide')
-    return false
   } else {
-    input.classList.add('hide')
-    return true  
+    input.classList.add('hide')  
   }
 }
 

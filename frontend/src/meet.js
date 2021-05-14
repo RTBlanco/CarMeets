@@ -41,9 +41,7 @@ class Meet {
   _meetInfo(){
     return `<h1>${this.title}</h1>
     <button>delete</button>
-    <form class="hide">
-      <input type="text" placeholder="secret code">
-    </form>
+    <input class="hide" type="text" placeholder="secret code">
     <ul>
       <li>location: ${this.location}</li>
       <li>Time and date: ${this.dateTime}</li>
