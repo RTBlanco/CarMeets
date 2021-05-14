@@ -4,16 +4,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
   meetsDiv.addEventListener('click', (e)=> {
     if(e.target.innerText === "delete" && e.target.tagName === "BUTTON"){
-      console.log('edit =>',e.target.parentNode.id);
       showScrCode(e)
       if (hideActive(e)){
         const delInp = document.getElementById(e.target.parentNode.id).children[2]
         let meet = Meet.findByID(getIdNum(e))
         delInp.addEventListener('keypress', (del)=>{
           if (del.key === "Enter"){
-            console.log(meet.secretCode)
             if (delInp.value === meet.secretCode){
-              console.log(delInp.value)
               meet.remove()
               deleteMeet(meet)
             }
@@ -81,7 +78,6 @@ function saveOwnerName(){
 }
 
 function testShowComments(e){
-  console.log('running')
   const comments = document.getElementById(`${e.target.parentNode.id}-comment`)
   if (comments.classList.contains('hide')){
     comments.classList.remove('hide')
