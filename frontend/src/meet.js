@@ -29,7 +29,7 @@ class Meet {
     commentDiv.id = `meet${this.id}-comment`
     commentDiv.classList.add('comment-section')
     commentDiv.classList.add('show')
-    meet.prepend(commentDiv);
+    meet.appendChild(commentDiv);
 
     this._showComments(commentDiv);
     // comments
@@ -55,7 +55,7 @@ class Meet {
 
   _showComments(div){
     for(const comment of this.comments){
-      div.appendChild(comment.render())
+      div.prepend(comment.render())
     }
   }
 

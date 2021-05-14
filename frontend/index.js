@@ -127,7 +127,8 @@ function createComment(obj){
   .then(comment => comment.json())
   .then(comment => {
     let c = new Comment(comment.id, comment.owner, comment.content, comment.meet_id)
-    console.log(c);
+    const meet = document.getElementById(`meet${c.meetId}-comment`)
+    meet.prepend(c.render())
   })
   .catch(error=> console.log(error))
 }

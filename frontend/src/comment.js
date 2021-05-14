@@ -3,7 +3,7 @@ class Comment {
     this.id = id;
     this.owner = owner;
     this.content = content;
-    this.meedId = meetId;
+    this.meetId = meetId;
   }
 
   render(){
