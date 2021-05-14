@@ -21,18 +21,18 @@ class Meet {
     meet.id = `meet${this.id}`;
     meet.classList.add("meet")
     meet.innerHTML = this._meetInfo();
-    meetsDiv.appendChild(meet)
-    
+    meetsDiv.prepend(meet)
+    //comments  this could be made to a static method for comment object
     showBtn.innerText = "show comments"
-    // showBtn.classList.add('show')
     meet.appendChild(showBtn)
 
     commentDiv.id = `meet${this.id}-comment`
     commentDiv.classList.add('comment-section')
     commentDiv.classList.add('show')
-    meet.appendChild(commentDiv);
+    meet.prepend(commentDiv);
 
     this._showComments(commentDiv);
+    // comments
 
   }
 
