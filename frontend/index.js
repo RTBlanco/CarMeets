@@ -5,7 +5,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
   meetsDiv.addEventListener('click', (e)=> {
     if(e.target.innerText === "delete" && e.target.tagName === "BUTTON"){
       console.log('edit =>',e.target.parentNode.id);
-      showScrCode(e)
+      if (showScrCode(e)){
+        const delForm = document.getElementById(e.target.parentNode.id).children[2]
+        delForm.addEventListener('submit',(del)=>{
+          del.preventDefault();
+          
+        })
+      }
     } else if (e.target.innerText === "show comments" && e.target.tagName === "BUTTON"){
       testShowComments(e)
     }
@@ -36,9 +42,10 @@ function showScrCode(e){
   const input = document.getElementById(e.target.parentNode.id).children[2];
   if (input.classList.contains('hide')){
     input.classList.remove('hide')
+    return false
   } else {
     input.classList.add('hide')
-    
+    return true  
   }
 }
 

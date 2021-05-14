@@ -1,4 +1,5 @@
 class Meet {
+  static all = [];
   constructor(id, location, title, image, owner, secretCode, dateTime){
     this.id = id;
     this.location = location;
@@ -8,6 +9,7 @@ class Meet {
     this.secretCode = secretCode; 
     this.dateTime = dateTime;
     this.comments = [];
+    Meet.all.push(this)
   }
 
   // instance method 
@@ -68,5 +70,9 @@ class Meet {
 
   get time(){
     // split the dateTime
+  }
+
+  static findByID(id){
+    return Meet.all.find(m => m.id == id)
   }
 }
