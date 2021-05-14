@@ -28,7 +28,7 @@ class Meet {
 
     commentDiv.id = `meet${this.id}-comment`
     commentDiv.classList.add('comment-section')
-    commentDiv.classList.add('show')
+    commentDiv.classList.add('hide')
     meet.appendChild(commentDiv);
 
     this._showComments(commentDiv);
@@ -38,7 +38,10 @@ class Meet {
 
   _meetInfo(){
     return `<h1>${this.title}</h1>
-    <button>edit</button>
+    <button>delete</button>
+    <form class="hide">
+      <input type="text" placeholder="secret code">
+    </form>
     <ul>
       <li>location: ${this.location}</li>
       <li>Time and date: ${this.dateTime}</li>

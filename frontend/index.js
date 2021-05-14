@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const meetsDiv = document.getElementById('all-meets');
 
   meetsDiv.addEventListener('click', (e)=> {
-    if(e.target.innerText === "edit" && e.target.tagName === "BUTTON"){
+    if(e.target.innerText === "delete" && e.target.tagName === "BUTTON"){
       console.log('edit =>',e.target.parentNode.id);
-      // this is for the edit button
+      showScrCode(e)
     } else if (e.target.innerText === "show comments" && e.target.tagName === "BUTTON"){
       testShowComments(e)
     }
@@ -31,6 +31,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
 });
 const BASE_URL = 'http://localhost:3000'
 
+function showScrCode(e){
+  const button = document.getElementById(e.target.parentNode.id).children[1]
+  const input = document.getElementById(e.target.parentNode.id).children[2];
+  if (input.classList.contains('hide')){
+    input.classList.remove('hide')
+  } else {
+    input.classList.add('hide')
+    
+  }
+}
+
 function formData(e){
   const formData = {};
     for(const i of e.target){
@@ -52,10 +63,10 @@ function saveOwnerName(){
 function testShowComments(e){
   console.log('running')
   const comments = document.getElementById(`${e.target.parentNode.id}-comment`)
-  if (comments.classList.contains('show')){
-    comments.classList.remove('show')
+  if (comments.classList.contains('hide')){
+    comments.classList.remove('hide')
   } else {
-    comments.classList.add('show')
+    comments.classList.add('hide')
   }
 }
 // Read 
@@ -147,6 +158,6 @@ function deleteMeet(){
 
 }
 
-function deleteeComment(){
+function deleteComment(){
 
 }
