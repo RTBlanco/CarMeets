@@ -3,9 +3,8 @@ class MeetsController < ApplicationController
 
   # GET /meets
   def index
-    @meets = Meet.all
-
-    render json: @meets, include: [:comments]
+    @meets = Meet.all.map{|meet| meet.serialize}
+    render json: @meets
   end
 
   # GET /meets/1
@@ -18,7 +17,7 @@ class MeetsController < ApplicationController
     @meet = Meet.new(meet_params)
 
     if @meet.save
-      render json: @meet, status: :created, location: @meet
+      render json: @meet.serialize
     else
       render json: @meet.errors, status: :unprocessable_entity
     end
@@ -46,6 +45,6 @@ class MeetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def meet_params
-      params.require(:meet).permit(:date_time, :location, :title, :image, :owner, :secret_code)
+      params.permit(:date_time, :location, :title, :image, :owner, :secret_code)
     end
 end
