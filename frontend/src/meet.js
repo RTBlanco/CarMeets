@@ -7,7 +7,7 @@ class Meet {
     this.image = image;
     this.owner = owner;
     this.secretCode = secretCode; 
-    this.dateTime = dateTime;
+    this.dateTime = new Date(dateTime);
     this.comments = [];
     Meet.all.push(this)
   }
@@ -48,11 +48,10 @@ class Meet {
     return `<h1>${this.title}</h1>
     <button>delete</button>
     <input class="hide" type="text" placeholder="secret code">
-    <img src="${this.image}" alt="CarMeet" width="500" height="600">
+    <img src="${this.image}" alt="CarMeet">
     <ul>
       <li>location: ${this.location}</li>
-      <li>Time and date: ${this.dateTime}</li>
-      <li>image: ${this.image}</li>
+      <li>Time and date: ${this.date} at ${this.time}</li>
       <li>Owner: ${this.Owner}</li>
     </ul>
     <form class='comment-form'>
@@ -71,10 +70,13 @@ class Meet {
 
   get date(){
     // split the dateTime
+    return this.dateTime.toDateString()
   }
 
   get time(){
     // split the dateTime
+    let [hour, minute] = this.dateTime.toLocaleTimeString("en-US").split(/:| /)
+    return `${hour}:${minute}`
   }
 
   static findByID(id){
