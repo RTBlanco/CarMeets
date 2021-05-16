@@ -1,27 +1,47 @@
+* {
+  margin: 0;
+}
+
 .meet {
   border: 2px solid red;
+  border-radius: 15px;
+  box-shadow:  10px #888888;
   width: 50%;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(202, 240, 248);
 }
 
-.hide {
-  display: none;
-}
 
-#all-meets{ 
+#open-button, #all-meets{ 
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: rgb(72, 202, 228);
 }
 
 img {
-  width: 450px;
-  height: 500px;
+  width: 50%;
+  height: 50%;
+}
+
+#form-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: rgba(91, 172, 248, 0.952); */
+  background-image: linear-gradient(rgb(72, 202, 228),rgb(0, 150, 199));
 }
 
 #new-meet-form {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 2px solid red;
+}
+
+.hide {
+  display: none;
 }
