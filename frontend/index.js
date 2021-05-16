@@ -54,11 +54,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
 const BASE_URL = 'http://localhost:3000'
 
 function hideFormArea(){
-  const formArea = document.getElementById("form-area");
-  if(formArea.style.display === 'flex'){
-    formArea.style.display = 'none';
+  const formDiv = document.getElementById("new-meet-form")
+
+  if (formDiv.style.display === 'none'){
+    formDiv.style.display = 'flex'
+    formDiv.className = 'open'
   } else {
-    formArea.style.display = 'flex';
+    formDiv.classList.remove('open')
+    formDiv.className = 'close'
+    setTimeout(()=> formDiv.style.display = 'none', 500)
   }
 }
 

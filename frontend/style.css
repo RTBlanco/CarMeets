@@ -2,6 +2,10 @@
   margin: 0;
 }
 
+body {
+  background-color: rgb(72, 202, 228);
+}
+
 .meet {
   border: 2px solid red;
   border-radius: 15px;
@@ -19,7 +23,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(72, 202, 228);
+  /* background-color: rgb(72, 202, 228); */
 }
 
 img {
@@ -31,16 +35,61 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(rgb(72, 202, 228),rgb(0, 150, 199));
 }
 
 #new-meet-form {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 2px solid red;
+  background-image: linear-gradient(rgb(72, 202, 228),rgb(0, 150, 199));
+  z-index: -1;
 }
 
 .hide {
   display: none;
+}
+
+#open-button{
+  margin: 10px 10px;
+}
+
+.open {
+  animation: grow .5s;
+  animation-fill-mode: forwards;
+}
+
+
+.close {
+  animation: shrink .5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink {
+  0% {
+    height: 250px;
+    opacity: 1;
+    z-index: 1;
+  }
+  100% {
+    height: 0px;
+    opacity: 0;
+    z-index: -1;
+  }
+} 
+
+
+@keyframes grow {
+  0% {
+    height: 0px;
+    opacity: 0;
+    z-index: -1;
+  }
+  100% {
+    height: 250px;
+    opacity: 1;
+    z-index: 1;
+  }
+
 }
