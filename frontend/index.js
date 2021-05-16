@@ -28,7 +28,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
     console.log(e)
     console.log('comment =>',e.target.parentNode.id);
-    const comment = { ...formInfo(e), meetId: getIdNum(e)}
+    let data = formInfo(e)
+    if (sessionStorage.getItem('owner')){
+      data['owner'] = sessionStorage.getItem('owner')
+    } else {
+      sessionStorage.setItem('owner', data['owner'])
+    }
+    const comment = { ...data, meetId: getIdNum(e)}
     console.log(comment);
     createComment(comment);
   })
@@ -54,13 +60,13 @@ function hideFormArea(){
     formArea.style.display = 'flex';
   }
 }
+
 function hideActive(e){
   const input = document.getElementById(e.target.parentNode.id).children[2];
   return !input.classList.contains('hide')
 }
 
 function showScrCode(e){
-  const button = document.getElementById(e.target.parentNode.id).children[1]
   const input = document.getElementById(e.target.parentNode.id).children[2];
   if (input.classList.contains('hide')){
     input.classList.remove('hide')
@@ -83,8 +89,8 @@ function getIdNum(e){
   return e.target.parentNode.id.slice(4)
 }
 
-function saveOwnerName(){
-  // this will save the owner name in the cache 
+function saveOwnerName(name){
+  sessionStorage.setItem(owner, name)
 }
 
 function testShowComments(e){
@@ -164,15 +170,6 @@ function createComment(obj){
     meet.prepend(c.render())
   })
   .catch(error=> console.log(error))
-}
-
-// update 
-function updateMeet(){
-
-}
-
-function updateComment(){
-
 }
 
 // delete

@@ -31,7 +31,6 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: rgba(91, 172, 248, 0.952); */
   background-image: linear-gradient(rgb(72, 202, 228),rgb(0, 150, 199));
 }
 
