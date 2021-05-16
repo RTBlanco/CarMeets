@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', ()=> {
             if (delInp.value === meet.secretCode){
               meet.remove()
               deleteMeet(meet)
+            } else {
+              // console.log(e)
+              // console.log(e.path[1].childNodes[4])
+              throwError(e.path[1].childNodes[4], "incorrect code")
             }
           }
         })
@@ -26,8 +30,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
   meetsDiv.addEventListener('submit', (e)=>{
     e.preventDefault();
 
-    console.log(e)
-    console.log('comment =>',e.target.parentNode.id);
     let data = formInfo(e)
     if (data['owner'] === "" && sessionStorage.getItem('owner')){
       data['owner'] = sessionStorage.getItem('owner')
@@ -35,14 +37,17 @@ document.addEventListener('DOMContentLoaded', ()=> {
       sessionStorage.setItem('owner', data['owner'])
     }
     const comment = { ...data, meetId: getIdNum(e)}
-    console.log(comment);
-    createComment(comment);
+    if(validateComment(e)) {createComment(comment)}
   })
   
   meetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const meetData = new FormData(e.target)
-    createMeet(meetData);
+    console.log(e)
+    if(validateMeet(e)){
+      const meetData = new FormData(e.target)
+      createMeet(meetData);
+    }
+    
   })
 
   arrowButton.addEventListener('click', hideFormArea)
@@ -53,6 +58,50 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 const BASE_URL = 'http://localhost:3000'
 
+
+function validateComment(e){
+  const name = e.target[0].value
+  const comment = e.target[1].value
+  if (name === "" || comment === ""){
+    console.log("invalid")
+    throwError(e.target)
+    return false
+  } else {
+    console.log("valid")
+    return true
+  }
+}
+
+function validateMeet(e){
+  const name = e.target[0].value
+  const location = e.target[1].value
+  const timeDate = e.target[2].value
+  const title = e.target[3].value
+  const secretCode = e.target[4].value
+  const image = e.target[5].value
+
+  if (name === '' || location === '' || timeDate === ''|| title === '' || secretCode === '' || image === ""){
+    console.log("invalid")
+    throwError(e.target)
+    return false
+  } else {
+    console.log("valid")
+    return true
+  }
+}
+
+function throwError(e, message='all feilds must be filled'){
+  e.style.border = "2px solid red"
+  let errorMsg = document.createElement("p");
+  errorMsg.innerText = message
+  errorMsg.style.color = "red"
+  e.parentNode.insertBefore(errorMsg, e)
+
+  setTimeout(()=> {
+    e.style.border = ""
+    errorMsg.remove();
+  }, 5000)
+}
 function hideFormArea(){
   const formDiv = document.getElementById("new-meet-form")
   const arrowBtn = document.getElementById('arrow-button')
@@ -153,7 +202,6 @@ function createComment(obj){
     owner: obj.owner,
     content: obj.content
   }
-  console.log(body)
 
   fetch(`${BASE_URL}/meets/${obj.meetId}/comments`,{
     method: "POST",
@@ -189,8 +237,4 @@ function deleteMeet(obj){
   })
   .then(meet => console.log(meet))
   .catch(error=> console.log(error))
-}
-
-function deleteComment(){
-
 }

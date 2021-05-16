@@ -52,7 +52,7 @@ class Meet {
     <ul>
       <li>location: ${this.location}</li>
       <li>Time and date: ${this.date} at ${this.time}</li>
-      <li>Owner: ${this.Owner}</li>
+      <li>Owner: ${this.owner}</li>
     </ul>
     <form class='comment-form'>
       <input type='text' name="owner" placeholder="name">
