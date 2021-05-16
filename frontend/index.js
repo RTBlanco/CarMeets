@@ -69,14 +69,6 @@ function validateComment(e){
   } else {
     return true
   }
-  // if (name === "" || comment === ""){
-  //   console.log("invalid")
-  //   throwError(e.target)
-  //   return false
-  // } else {
-  //   console.log("valid")
-  //   return true
-  // }
 }
 
 function validateMeet(e){
