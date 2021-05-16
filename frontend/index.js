@@ -55,12 +55,16 @@ const BASE_URL = 'http://localhost:3000'
 
 function hideFormArea(){
   const formDiv = document.getElementById("new-meet-form")
+  const arrowBtn = document.getElementById('arrow-button')
 
   if (formDiv.style.display === 'none'){
     formDiv.style.display = 'flex'
     formDiv.className = 'open'
+    arrowBtn.className = 'turn'
   } else {
     formDiv.classList.remove('open')
+    arrowBtn.classList.remove('turn')
+    arrowBtn.className = 'turn-back'
     formDiv.className = 'close'
     setTimeout(()=> formDiv.style.display = 'none', 500)
   }
