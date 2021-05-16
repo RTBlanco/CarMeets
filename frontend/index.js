@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     console.log(e)
     console.log('comment =>',e.target.parentNode.id);
     let data = formInfo(e)
-    if (sessionStorage.getItem('owner')){
+    if (data['owner'] === "" && sessionStorage.getItem('owner')){
       data['owner'] = sessionStorage.getItem('owner')
     } else {
       sessionStorage.setItem('owner', data['owner'])
@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   fetchMeets();
 
 });
+
 const BASE_URL = 'http://localhost:3000'
 
 function hideFormArea(){
@@ -89,9 +90,6 @@ function getIdNum(e){
   return e.target.parentNode.id.slice(4)
 }
 
-function saveOwnerName(name){
-  sessionStorage.setItem(owner, name)
-}
 
 function testShowComments(e){
   const comments = document.getElementById(`${e.target.parentNode.id}-comment`)
