@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=> {
   const meetForm = document.getElementById('new-meet-form');
   const meetsDiv = document.getElementById('all-meets');
+  const arrowButton = document.getElementById('open-button').firstElementChild;
 
   meetsDiv.addEventListener('click', (e)=> {
     if(e.target.innerText === "delete" && e.target.tagName === "BUTTON"){
@@ -38,11 +39,21 @@ document.addEventListener('DOMContentLoaded', ()=> {
     createMeet(meetData);
   })
 
+  arrowButton.addEventListener('click', hideFormArea)
+
   fetchMeets();
 
 });
 const BASE_URL = 'http://localhost:3000'
 
+function hideFormArea(){
+  const formArea = document.getElementById("form-area");
+  if(formArea.style.display === 'flex'){
+    formArea.style.display = 'none';
+  } else {
+    formArea.style.display = 'flex';
+  }
+}
 function hideActive(e){
   const input = document.getElementById(e.target.parentNode.id).children[2];
   return !input.classList.contains('hide')
