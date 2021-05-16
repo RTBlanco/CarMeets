@@ -15,8 +15,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
               meet.remove()
               deleteMeet(meet)
             } else {
-              // console.log(e)
-              // console.log(e.path[1].childNodes[4])
               throwError(e.path[1].childNodes[4], "incorrect code")
             }
           }
@@ -62,14 +60,23 @@ const BASE_URL = 'http://localhost:3000'
 function validateComment(e){
   const name = e.target[0].value
   const comment = e.target[1].value
-  if (name === "" || comment === ""){
+  if (sessionStorage.getItem('owner') && comment !== ""){
+    return true
+  } else if (name === "" || comment === ""){
     console.log("invalid")
     throwError(e.target)
     return false
   } else {
-    console.log("valid")
     return true
   }
+  // if (name === "" || comment === ""){
+  //   console.log("invalid")
+  //   throwError(e.target)
+  //   return false
+  // } else {
+  //   console.log("valid")
+  //   return true
+  // }
 }
 
 function validateMeet(e){
@@ -102,6 +109,8 @@ function throwError(e, message='all feilds must be filled'){
     errorMsg.remove();
   }, 5000)
 }
+
+
 function hideFormArea(){
   const formDiv = document.getElementById("new-meet-form")
   const arrowBtn = document.getElementById('arrow-button')
