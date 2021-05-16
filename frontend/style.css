@@ -68,7 +68,7 @@ img {
 
 @keyframes shrink {
   0% {
-    height: 250px;
+    height: 260px;
     opacity: 1;
     z-index: 1;
   }
@@ -87,7 +87,7 @@ img {
     z-index: -1;
   }
   100% {
-    height: 250px;
+    height: 260px;
     opacity: 1;
     z-index: 1;
   }
