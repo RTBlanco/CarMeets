@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
   
   meetForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    console.log(e)
     if(validateMeet(e)){
       const meetData = new FormData(e.target)
       createMeet(meetData);
@@ -63,7 +62,6 @@ function validateComment(e){
   if (sessionStorage.getItem('owner') && comment !== ""){
     return true
   } else if (name === "" || comment === ""){
-    console.log("invalid")
     throwError(e.target)
     return false
   } else {
@@ -80,11 +78,9 @@ function validateMeet(e){
   const image = e.target[5].value
 
   if (name === '' || location === '' || timeDate === ''|| title === '' || secretCode === '' || image === ""){
-    console.log("invalid")
     throwError(e.target)
     return false
   } else {
-    console.log("valid")
     return true
   }
 }
