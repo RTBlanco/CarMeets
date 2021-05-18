@@ -54,12 +54,14 @@ class Meet {
       <li>Time and date: ${this.date} at ${this.time}</li>
       <li>Owner: ${this.owner}</li>
     </ul>
-    <form class='comment-form'>
-      <input type='text' name="owner" placeholder="name">
-      <input type="textarea" name="content" placeholder="comment">
-      <input style="display: none;" type="submit" value="submit">
-    </from>
-    `
+    ${Comment.renderFormComment()}`
+
+    // <form class='comment-form'>
+    //   <input type='text' name="owner" placeholder="name">
+    //   <input type="textarea" name="content" placeholder="comment">
+    //   <input style="display: none;" type="submit" value="submit">
+    // </from>
+    // `
   }
 
   _showComments(div){

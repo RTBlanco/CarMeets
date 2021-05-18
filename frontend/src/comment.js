@@ -17,4 +17,12 @@ class Comment {
     
     return comment
   }
+
+  static renderFormComment(){
+    return `<form class="comment-form">
+      <input type="text" name="owner" placeholder="name">
+      <input type="textarea" name="content" placeholder="comment">
+      <input style="display: none;" type="submit" value="submit">
+    </from>`
+  }
 }
