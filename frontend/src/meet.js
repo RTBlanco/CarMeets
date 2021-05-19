@@ -24,7 +24,7 @@ class Meet {
     meet.classList.add("meet")
     meet.innerHTML = this._meetInfo();
     meetsDiv.prepend(meet)
-    //comments  this could be made to a static method for comment object
+  
     showBtn.innerText = "show comments"
     meet.appendChild(showBtn)
 
