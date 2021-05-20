@@ -1,6 +1,6 @@
 class Meet {
   static all = [];
-  constructor(id, location, title, image, owner, secretCode, dateTime){
+  constructor(id, location, title, image, owner, secretCode, dateTime, comments){
     this.id = id;
     this.location = location;
     this.title = title;
@@ -8,7 +8,7 @@ class Meet {
     this.owner = owner;
     this.secretCode = secretCode; 
     this.dateTime = new Date(dateTime);
-    this.comments = [];
+    this.comments = comments.map(comment => new Comment(comment.id, comment.owner, comment.content, comment.meet_id));
     Meet.all.push(this)
   }
 

@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
   })
 
+
   meetsDiv.addEventListener('submit', (e)=>{
     e.preventDefault();
 
@@ -160,11 +161,7 @@ function fetchMeets(){
   .then(resp => resp.json())
   .then(meets => {
     for( const meet of meets){
-      let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
-      for(const comment of meet.comments){
-        let c = new Comment(comment.id, comment.owner, comment.content, comment.meet_id)
-        m.comments.push(c)
-      }
+      let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time, meet.comments)
       m.render();
     }
   })
