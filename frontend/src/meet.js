@@ -8,7 +8,7 @@ class Meet {
     this.owner = owner;
     this.secretCode = secretCode; 
     this.dateTime = new Date(dateTime);
-    this.comments = comments.map(comment => new Comment(comment.id, comment.owner, comment.content, comment.meet_id));
+    this.comments = (comments.length !== 0) ? comments.map(comment => new Comment(comment.id, comment.owner, comment.content, comment.meet_id)) : []
     Meet.all.push(this)
   }
 
