@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
   const meetForm = document.getElementById('new-meet-form');
   const meetsDiv = document.getElementById('all-meets');
   const arrowButton = document.getElementById('open-button').firstElementChild;
+  const searchFrom = document.getElementById('search')
+  const domMeets = document.getElementsByClassName('meet')
 
   meetsDiv.addEventListener('click', (e)=> {
     if(e.target.innerText === "delete" && e.target.tagName === "BUTTON"){
@@ -47,12 +49,47 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
     
   })
+  
+  // Code challenge  
+  searchFrom.addEventListener('keydown', (event)=>{
+    let searchVal = event.target.value;
+    let len = searchVal.length
+
+    console.log(event)
+
+    hideMeets(domMeets)
+
+    let newMeets = Array.from(domMeets)
+    if (len !== 0 && event.key !== "Backspace") {
+      let foundMeets = newMeets.filter(m => m.firstElementChild.innerText.slice(0,len + 1) === searchVal + event.key)
+      showMeets(foundMeets)
+    } else if (event.key === "Backspace"){
+      let foundMeets = newMeets.filter(m => m.firstElementChild.innerText.slice(0,len - 1) === searchVal.slice(0,len - 1))
+      showMeets(foundMeets)
+    } else {
+      let foundMeets = newMeets.filter(m => m.firstElementChild.innerText.slice(0,1) === event.key)
+      showMeets(foundMeets)
+    }
+  })
 
   arrowButton.addEventListener('click', hideFormArea)
 
   fetchMeets();
 
 });
+
+  // Code challenge  
+function hideMeets(array){
+  for (meet of array){
+    meet.classList.add("hidden-meet");
+  }
+}
+  // Code challenge  
+function showMeets(array){
+  for (meet of array) {
+    meet.classList.remove('hidden-meet')
+  }
+}
 
 const BASE_URL = 'http://localhost:3000'
 

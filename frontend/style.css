@@ -82,6 +82,10 @@ body {
   animation-fill-mode: forwards;
 }
 
+.hidden-meet {
+  display: none;
+}
+
 @keyframes rotate-button {
   0% {
     transform: rotate(90deg);
