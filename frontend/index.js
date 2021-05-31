@@ -183,7 +183,7 @@ function createMeet(obj){
     }
   })
   .then(meet => {
-    let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time)
+    let m = new Meet(meet.id, meet.location, meet.title, meet.image, meet.owner, meet.secret_code, meet.date_time, meet.comments)
     m.render();
   })
   .catch(error=> console.error(error))
